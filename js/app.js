@@ -1,3 +1,10 @@
+//Search Nature by Entering
+document.getElementById("search").addEventListener("keypress", function(event) {
+  if (event.key == 'Enter'){
+      document.getElementById("search-btn").click();
+  }
+});
+
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
@@ -139,4 +146,4 @@ sliderBtn.addEventListener('click', function () {
 
 const showAlert = () => {
   document.getElementById('alert').innerText = 'Please input only positive numbers';
-}
+};
