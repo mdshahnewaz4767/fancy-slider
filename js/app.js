@@ -1,4 +1,4 @@
-//Search Nature by Entering
+//Search Natural Images by Entering
 document.getElementById("search").addEventListener("keypress", function(event) {
   if (event.key == 'Enter'){
       document.getElementById("search-btn").click();
@@ -31,8 +31,9 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
+    document.getElementById('loading-spinner').style.display = 'none';
   });
-
+  document.getElementById('search').value = "";
 };
 
 const getImages = (query) => {
@@ -42,7 +43,7 @@ const getImages = (query) => {
       // console.log(data.hits);
       showImages(data.hits);
     })
-    .catch(err => console.log(err));
+    .catch(err => alert("Something went wrong!! Please try again later!"));
 };
 
 
@@ -50,13 +51,19 @@ const getImages = (query) => {
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  element.classList.add('added');
+  // element.classList.add('added');
+  element.classList.toggle('added');
+  
  
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-  } else {
-    alert('Hey, Already added !');
+    // element.classList.add('added');
+  } 
+  else {
+    // alert('Hey, Already added !');
+    sliders.pop(img);
+    // element.classList.remove('added');
   }
 };
 var timer;
@@ -80,10 +87,10 @@ const createSlider = () => {
   // hide image aria with validation
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0 ){
-    showAlert();
+    console.log('Error');
   }
   else if(isNaN(duration)){
-    showAlert();
+    console.log('Error');
   }
   else{
     imagesArea.style.display = 'none';
@@ -101,7 +108,8 @@ const createSlider = () => {
       slideIndex++;
       changeSlide(slideIndex);
     }, duration);
-    document.getElementById('alert').innerText = "";
+    // document.getElementById('alert').innerText = "";
+    document.getElementById("title").style.display = 'block';
   }
 };
 
@@ -131,19 +139,35 @@ const changeSlide = (index) => {
   items[index].style.display = "block";
 };
 
+// Connect API in search box with validation
 searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  getImages(search.value);
-  sliders.length = 0;
+  if(search.value == ""){
+    console.log('Error');
+  }
+  else{
+    getImages(search.value);
+    sliders.length = 0;
+  }
+  toggleSpinner();
+  searchTitle();
 });
 
 sliderBtn.addEventListener('click', function () {
   createSlider();
 });
 
+//Search Header Title 
+const searchTitle = () => {
+  const searchInput = document.getElementById('search');
+  document.getElementById('title').innerHTML = searchInput.value + ' ' + 'Nature';
+  document.getElementById("title").style.textTransform = "capitalize";
+};
 
-const showAlert = () => {
-  document.getElementById('alert').innerText = 'Please input only positive numbers';
+// Loading Spinner
+const toggleSpinner = () => {
+  const spinner = document.getElementById('loading-spinner');
+  spinner.classList.toggle('d-none');
 };
