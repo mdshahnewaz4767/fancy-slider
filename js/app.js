@@ -69,23 +69,33 @@ const createSlider = () => {
   `;
 
   sliderContainer.appendChild(prevNext);
-  document.querySelector('.main').style.display = 'block';
-  // hide image aria
-  imagesArea.style.display = 'none';
+
+  // hide image aria with validation
   const duration = document.getElementById('duration').value || 1000;
-  sliders.forEach(slide => {
-    let item = document.createElement('div');
-    item.className = "slider-item";
-    item.innerHTML = `<img class="w-100"
-    src="${slide}"
-    alt="">`;
-    sliderContainer.appendChild(item);
-  });
-  changeSlide(0);
-  timer = setInterval(function () {
-    slideIndex++;
-    changeSlide(slideIndex);
-  }, duration);
+  if(duration <= 0 ){
+    showAlert();
+  }
+  else if(isNaN(duration)){
+    showAlert();
+  }
+  else{
+    imagesArea.style.display = 'none';
+    document.querySelector('.main').style.display = 'block';
+    sliders.forEach(slide => {
+      let item = document.createElement('div');
+      item.className = "slider-item";
+      item.innerHTML = `<img class="w-100"
+      src="${slide}"
+      alt="">`;
+      sliderContainer.appendChild(item);
+    });
+    changeSlide(0);
+    timer = setInterval(function () {
+      slideIndex++;
+      changeSlide(slideIndex);
+    }, duration);
+    document.getElementById('alert').innerText = "";
+  }
 };
 
 // change slider index 
@@ -125,3 +135,8 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider();
 });
+
+
+const showAlert = () => {
+  document.getElementById('alert').innerText = 'Please input only positive numbers';
+}

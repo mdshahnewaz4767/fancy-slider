@@ -54,6 +54,12 @@ img {
 .main {
   display: none;
 }
+.alert{
+  text-align: center;
+  font-size: 17px;
+  color: red;
+  font-weight: 600;
+}
 
 @media (max-width: 767px) {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
