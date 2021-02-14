@@ -76,6 +76,7 @@ const createSlider = () => {
   }
   // crate slider previous next area
   sliderContainer.innerHTML = '';
+  document.getElementById('alert').innerText = '';
   const prevNext = document.createElement('div');
   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
@@ -109,9 +110,10 @@ const createSlider = () => {
       slideIndex++;
       changeSlide(slideIndex);
     }, duration);
-    // document.getElementById('alert').innerText = "";
+    // document.getElementById('alert').innerText = "Please enter the photos name!!";
   }
-  document.getElementById("title").style.display = 'block';
+  document.getElementById("title").innerText = 'Natural Image Slider';
+  document.getElementById("sliders").style.display = 'block';
 };
 
 // change slider index 
@@ -145,16 +147,19 @@ searchBtn.addEventListener('click', function () {
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
-  if(search.value == ""){
+  if(search.value === ""){
     console.log('Error');
-    document.getElementById("title").style.display = 'none';
+    document.getElementById("title").style.display = 'block';
+    document.getElementById('loading-spinner').style.display = 'none';
+    document.getElementById('alert').innerText = "Please enter the photo name!!";
   }
   else{
     getImages(search.value);
     sliders.length = 0;
+    document.getElementById('alert').innerText = "";
+    searchTitle();
   }
   toggleSpinner();
-  searchTitle();
 });
 
 sliderBtn.addEventListener('click', function () {
