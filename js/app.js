@@ -24,6 +24,7 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 const showImages = (images) => {
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
+  
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
@@ -33,14 +34,13 @@ const showImages = (images) => {
     gallery.appendChild(div);
   });
   document.getElementById('search').value = "";
-  document.getElementById('loading-spinner').style.display = 'none';
+  toggleSpinner();
 };
 
 const getImages = (query) => {
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => {
-      // console.log(data.hits);
       showImages(data.hits);
     })
     .catch(err => alert("Something went wrong!! Please try again later!"));
@@ -155,11 +155,11 @@ searchBtn.addEventListener('click', function () {
   }
   else{
     getImages(search.value);
+    toggleSpinner();
     sliders.length = 0;
     document.getElementById('alert').innerText = "";
     searchTitle();
   }
-  toggleSpinner();
 });
 
 sliderBtn.addEventListener('click', function () {
