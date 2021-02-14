@@ -1,4 +1,3 @@
-# fancy-slider
 ### Feature-1:
     a). If we leave the search box empty and click on the search button, then a warning message will show.
     b). If we search by typing any text in the search box, that text will show as the search title below the search box. Also, that text will be automatically removed after the result. 
