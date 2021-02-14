@@ -86,12 +86,10 @@ const createSlider = () => {
   // Hide Image Aria With Validation
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0 ){
-    console.log('Error');
     document.getElementById('title').style.display = 'block';
     showDurationAlert();
   }
   else if(isNaN(duration)){
-    console.log('Error');
     document.getElementById('title').style.display = 'block';
     showDurationAlert();
   }
@@ -111,6 +109,7 @@ const createSlider = () => {
       slideIndex++;
       changeSlide(slideIndex);
     }, duration);
+    document.getElementById('duration').value = "";
   }
   document.getElementById("sliders").style.display = 'block';
 };
@@ -147,7 +146,6 @@ searchBtn.addEventListener('click', function () {
   clearInterval(timer);
   const search = document.getElementById('search');
   if(search.value === ""){
-    console.log('Error');
     document.getElementById("title").style.display = 'block';
     document.getElementById('loading-spinner').style.display = 'none';
     document.getElementById('alert').innerText = "Please enter the photo name!!";
@@ -158,6 +156,7 @@ searchBtn.addEventListener('click', function () {
     toggleSpinner();
     sliders.length = 0;
     document.getElementById('alert').innerText = "";
+    document.getElementById('duration-alert').innerText = "";
     searchTitle();
   }
 });
