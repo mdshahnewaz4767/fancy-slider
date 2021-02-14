@@ -171,6 +171,7 @@ sliderBtn.addEventListener('click', function () {
 const toggleSpinner = () => {
   const spinner = document.getElementById('loading-spinner');
   spinner.classList.toggle('d-none');
+  document.querySelector('.gallery').classList.toggle('d-none');
 };
 
 //Search Header Title For Image
