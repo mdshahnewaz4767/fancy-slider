@@ -47,26 +47,21 @@ const getImages = (query) => {
 };
 
 
-//2
+//Select And Deselect Images
 let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
-  // element.classList.add('added');
   element.classList.toggle('added');
-  
  
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
-    // element.classList.add('added');
   } 
   else {
-    // alert('Hey, Already added !');
-    // sliders.pop(img);
     sliders.splice(item, 1);
-    // element.classList.remove('added');
   }
 };
+
 var timer;
 const createSlider = () => {
   // check slider image length
@@ -74,7 +69,7 @@ const createSlider = () => {
     alert('Select at least 2 image.');
     return;
   }
-  // crate slider previous next area
+  // Create slider previous next area with Validation
   sliderContainer.innerHTML = '';
   document.getElementById('alert').innerText = '';
   document.getElementById("title").innerText = 'Natural Image Slider';
@@ -87,7 +82,7 @@ const createSlider = () => {
 
   sliderContainer.appendChild(prevNext);
 
-  // hide image aria with validation
+  // Hide Image Aria With Validation
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0 ){
     console.log('Error');
@@ -113,9 +108,7 @@ const createSlider = () => {
       slideIndex++;
       changeSlide(slideIndex);
     }, duration);
-    // document.getElementById('alert').innerText = "Please enter the photos name!!";
   }
-  // document.getElementById("title-two").innerText = 'Natural Image Slider';
   document.getElementById("sliders").style.display = 'block';
 };
 
@@ -176,7 +169,7 @@ const toggleSpinner = () => {
   spinner.classList.toggle('d-none');
 };
 
-//Search Header Title 
+//Search Header Title For Image
 const searchTitle = () => {
   const searchInput = document.getElementById('search');
   document.getElementById('title').innerHTML = searchInput.value + ' ' + 'Nature';
