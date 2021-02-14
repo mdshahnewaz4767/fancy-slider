@@ -1,4 +1,4 @@
-//Search Natural Images by Entering
+//Search Natural Images by Press Enter
 document.getElementById("search").addEventListener("keypress", function(event) {
   if (event.key == 'Enter'){
       document.getElementById("search-btn").click();
@@ -72,7 +72,8 @@ const createSlider = () => {
   // Create slider previous next area with Validation
   sliderContainer.innerHTML = '';
   document.getElementById('alert').innerText = '';
-  document.getElementById("title").innerText = 'Natural Image Slider';
+  document.getElementById("title").innerText = '';
+  document.getElementById('duration-alert').innerText = '';
   const prevNext = document.createElement('div');
   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
@@ -86,11 +87,13 @@ const createSlider = () => {
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0 ){
     console.log('Error');
-    document.getElementById("title-two").style.display = 'none';
+    document.getElementById('title').style.display = 'block';
+    showDurationAlert();
   }
   else if(isNaN(duration)){
     console.log('Error');
-    document.getElementById("title-two").style.display = 'none';
+    document.getElementById('title').style.display = 'block';
+    showDurationAlert();
   }
   else{
     imagesArea.style.display = 'none';
@@ -148,6 +151,7 @@ searchBtn.addEventListener('click', function () {
     document.getElementById("title").style.display = 'block';
     document.getElementById('loading-spinner').style.display = 'none';
     document.getElementById('alert').innerText = "Please enter the photo name!!";
+    document.getElementById('duration-alert').innerText = '';
   }
   else{
     getImages(search.value);
@@ -174,4 +178,9 @@ const searchTitle = () => {
   const searchInput = document.getElementById('search');
   document.getElementById('title').innerHTML = searchInput.value + ' ' + 'Nature';
   document.getElementById("title").style.textTransform = "capitalize";
+};
+
+//Show Duration Warning
+const showDurationAlert = () => {
+  document.getElementById('duration-alert').innerText = 'Please enter only positive numbers!!';
 };
