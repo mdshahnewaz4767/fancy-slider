@@ -31,9 +31,9 @@ const showImages = (images) => {
     div.className = 'col-lg-3 col-md-4 col-xs-6 img-item mb-2';
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div);
-    document.getElementById('loading-spinner').style.display = 'none';
   });
   document.getElementById('search').value = "";
+  document.getElementById('loading-spinner').style.display = 'none';
 };
 
 const getImages = (query) => {
@@ -77,6 +77,7 @@ const createSlider = () => {
   // crate slider previous next area
   sliderContainer.innerHTML = '';
   document.getElementById('alert').innerText = '';
+  document.getElementById("title").innerText = 'Natural Image Slider';
   const prevNext = document.createElement('div');
   prevNext.className = "prev-next d-flex w-100 justify-content-between align-items-center";
   prevNext.innerHTML = ` 
@@ -90,9 +91,11 @@ const createSlider = () => {
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0 ){
     console.log('Error');
+    document.getElementById("title-two").style.display = 'none';
   }
   else if(isNaN(duration)){
     console.log('Error');
+    document.getElementById("title-two").style.display = 'none';
   }
   else{
     imagesArea.style.display = 'none';
@@ -112,7 +115,7 @@ const createSlider = () => {
     }, duration);
     // document.getElementById('alert').innerText = "Please enter the photos name!!";
   }
-  document.getElementById("title").innerText = 'Natural Image Slider';
+  // document.getElementById("title-two").innerText = 'Natural Image Slider';
   document.getElementById("sliders").style.display = 'block';
 };
 
