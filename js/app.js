@@ -62,7 +62,8 @@ const selectItem = (event, img) => {
   } 
   else {
     // alert('Hey, Already added !');
-    sliders.pop(img);
+    // sliders.pop(img);
+    sliders.splice(item, 1);
     // element.classList.remove('added');
   }
 };
@@ -109,8 +110,8 @@ const createSlider = () => {
       changeSlide(slideIndex);
     }, duration);
     // document.getElementById('alert').innerText = "";
-    document.getElementById("title").style.display = 'block';
   }
+  document.getElementById("title").style.display = 'block';
 };
 
 // change slider index 
@@ -146,6 +147,7 @@ searchBtn.addEventListener('click', function () {
   const search = document.getElementById('search');
   if(search.value == ""){
     console.log('Error');
+    document.getElementById("title").style.display = 'none';
   }
   else{
     getImages(search.value);
@@ -159,15 +161,16 @@ sliderBtn.addEventListener('click', function () {
   createSlider();
 });
 
-//Search Header Title 
-const searchTitle = () => {
-  const searchInput = document.getElementById('search');
-  document.getElementById('title').innerHTML = searchInput.value + ' ' + 'Nature';
-  document.getElementById("title").style.textTransform = "capitalize";
-};
 
 // Loading Spinner
 const toggleSpinner = () => {
   const spinner = document.getElementById('loading-spinner');
   spinner.classList.toggle('d-none');
+};
+
+//Search Header Title 
+const searchTitle = () => {
+  const searchInput = document.getElementById('search');
+  document.getElementById('title').innerHTML = searchInput.value + ' ' + 'Nature';
+  document.getElementById("title").style.textTransform = "capitalize";
 };

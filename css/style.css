@@ -54,12 +54,13 @@ img {
 .main {
   display: none;
 }
-/* .alert{
+.alert{
   text-align: center;
   font-size: 17px;
   color: red;
   font-weight: 600;
-} */
+  width: 100%;
+}
 .search-title h4{
   font-size: 30px;
   font-weight: 700;
