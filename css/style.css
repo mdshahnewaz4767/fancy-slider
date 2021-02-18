@@ -1,3 +1,30 @@
+body{
+  background-color: #68dce2 !important;
+}
+.navbar{
+  background-color: #172943;
+  padding: .6rem 4rem;
+}
+.navbar-nav .nav-link{
+  color: white !important;
+  font-weight: 500;
+  font-size: 17px;
+  transition: .3s ease;
+}
+.navbar-nav .nav-item{
+  margin: 0px 15px;
+}
+.navbar-nav .active a{
+  color: rgb(209, 209, 209) !important;
+}
+.navbar-nav .nav-item a:hover{
+  color: rgb(209, 209, 209) !important;
+}
+.logo{
+  width: 20%;
+  height: auto;
+}
+
 #sliders {
   height: 400px;
   width: 60%;
@@ -41,6 +68,11 @@ img {
   padding: 8px 10px;
   color: #fff;
 }
+.dots{
+  width: 60%;
+  margin-left: 13.9rem;
+  background-color: #68dce2 !important;
+}
 
 .dot {
   background-color: rgb(163, 156, 156);
@@ -60,6 +92,11 @@ img {
   color: red;
   font-weight: 600;
   width: 100%;
+  margin-bottom: 0px;
+  margin-top: -16px;
+}
+.search-title{
+  margin-top: 2rem;
 }
 .search-title h4{
   font-size: 30px;
@@ -72,6 +109,99 @@ img {
   font-size: 1.4rem;
 }
 
+/* Mobile NavBar */
+.mobile-menu span {
+  color: #fff;
+  font-size: 4rem;
+  float: right;
+  display: none;
+}
+.mobile-menu span:hover {
+  cursor: pointer;
+}
+.overlay {
+  width: 0;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.overlay-content {
+  position: relative;
+  top: 10%;
+  width: 100%;
+  text-align: center;
+}
+.overlay a {
+  text-decoration: none;
+  display: block;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3rem;
+  color: #999;
+  padding: 1rem 0;
+}
+.overlay a:hover {
+  color: #fff;
+}
+.overlay .closeBtn {
+  position: absolute;
+  top: 0rem;
+  right: 4.5rem;
+  font-size: 5rem;
+}
+.mobile-menu span {
+  margin-top: 0;
+  line-height: 1;
+}
+/* /.Mobile NavBar  */
+
+
+@media  (max-width: 991px) {
+  .navbar-nav{
+    display:none ;
+  }
+  .mobile-menu span{
+    display: block;
+    font-size: 45px;
+    margin-top: -5px
+  }
+  .navbar {
+    padding: .6rem 2rem;
+  }
+  .overlay .closeBtn {
+    top: -2rem;
+    right: 1rem;
+  }
+  .overlay a{
+    font-size: 1.7rem;
+  }
+}
+@media only screen and (min-width: 641px) and (max-width: 991px){
+  .navbar-brand{
+    width: 81%;
+  }
+  .logo{
+    width: 34%;
+    height: auto;
+  }
+}
+@media only screen and (max-width: 640px){
+  .navbar-brand{
+    width: 70%;
+  }
+  .logo{
+    width: 70%;
+    height: auto;
+  }
+  .mobile-menu span{
+    font-size: 35px;
+  }
+}
 @media (max-width: 767px) {
   .justify-content-around.align-items-center.mt-3.gallery-header.mb-2 {
     flex-direction: column;

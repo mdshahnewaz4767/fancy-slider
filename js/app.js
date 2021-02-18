@@ -4,6 +4,12 @@ document.getElementById("search").addEventListener("keypress", function(event) {
       document.getElementById("search-btn").click();
   }
 });
+// Slider change duration by Press Enter
+document.getElementById('duration').addEventListener('keypress', function(event){
+  if(event.key == 'Enter'){
+    document.getElementById('create-slider').click();
+  }
+});
 
 const imagesArea = document.querySelector('.images');
 const gallery = document.querySelector('.gallery');
@@ -151,6 +157,9 @@ searchBtn.addEventListener('click', function () {
     document.getElementById('alert').innerText = "Please enter the photo name!!";
     document.getElementById('duration-alert').innerText = '';
   }
+  else if(!/^[a-zA-Z]*$/g.test(search.value)){
+    document.getElementById('alert').innerText = "Please enter alphabet characters only!!";
+  }
   else{
     getImages(search.value);
     toggleSpinner();
@@ -184,3 +193,11 @@ const searchTitle = () => {
 const showDurationAlert = () => {
   document.getElementById('duration-alert').innerText = 'Please enter only positive numbers!!';
 };
+
+//For Mobile navBar
+function openNav() {
+  document.getElementById("myNav").style.width = "100%";
+}
+function closeNav() {
+  document.getElementById("myNav").style.width = "0%";
+}
